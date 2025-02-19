@@ -1,0 +1,39 @@
+<h1> Hello Model_Form </h1>
+
+<div>
+<form action="" method="post", style = "background-color:rgba(240, 139, 8, 0.56);">
+    {% csrf_token %}
+    {{form.as_p}}
+
+    <div style="display: flex; gap: 10px;">
+
+    <input type="submit" value="Submit">
+    
+
+
+
+</form>
+</div>
+
+
+<form method="get" style="margin-top: 10px;">
+    <button type="submit" name="show_data" value="true">View Previous Data</button>
+</form>
+
+{% if saved_data %}
+    <h2> Saved data </h2>
+    <ul>
+        {% for item in saved_data %}
+            <li>
+                <strong>Firt Name:</strong> {{item.first_name}} <br>
+                <strong>Firt Name:</strong> {{item.last_name}} <br>
+                <strong>Firt Name:</strong> {{item.age}} <br>
+                <hr>
+                
+            
+            </li>
+        {% endfor %}
+    </ul>
+    <a href="/" style="color: blue;">Clear Data</a>
+
+{% endif %}
