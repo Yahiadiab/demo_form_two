@@ -1,0 +1,7 @@
+<h1>Update Entry</h1>
+<form action="{% url 'update_entry' entry_id %}" method="post" style = "background-color:rgba(240, 139, 8, 0.56);">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Update</button>
+    <a href="{% url 'Form_Model' %}">Cancel</a>
+</form>

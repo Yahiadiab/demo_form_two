@@ -28,6 +28,12 @@
                 <strong>Firt Name:</strong> {{item.first_name}} <br>
                 <strong>Firt Name:</strong> {{item.last_name}} <br>
                 <strong>Firt Name:</strong> {{item.age}} <br>
+                
+                <a href="{% url 'delete_entry' item.id %}" 
+                   style="color: red; text-decoration: none; margin-right: 10px;">Delete</a>
+
+                <a href="{% url 'update_entry' item.id %}" 
+                   style="color: blue; text-decoration: none;">Edit</a>
                 <hr>
                 
             
