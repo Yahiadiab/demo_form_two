@@ -22,18 +22,84 @@
 
 {% if saved_data %}
     <h2> Saved data </h2>
-    <ul>
-        {% for item in saved_data %}
-            <li>
-                <strong>Firt Name:</strong> {{item.first_name}} <br>
-                <strong>Firt Name:</strong> {{item.last_name}} <br>
-                <strong>Firt Name:</strong> {{item.age}} <br>
-                <hr>
+    <table>
+        <thead>
+            <tr>
+        
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Age</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            {% for item in saved_data %}
+
+            <tr >
+
+                <td>{{item.first_name}}</td>
+                <td>{{item.last_name}} </td>
+                <td>{{item.age}}</td> 
+                <td>
+                    <a href="{% url 'delete_entry' item.id %}" 
+                        class="delete-link">Delete</a>
+
+                    <a href="{% url 'update_entry' item.id %}" 
+                        class="edit-link">Edit</a>
+
+                </td>
+            </tr>    
                 
+            {% endfor %}
+        
+        </tbody>
             
-            </li>
-        {% endfor %}
-    </ul>
-    <a href="/" style="color: blue;">Clear Data</a>
+        
+    </table>
+    <a href="/" style="font-weight: bold">Hide Data</a>
 
 {% endif %}
+<style>
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        text-align: left;
+        font-family: Arial, sans-serif;
+    }
+
+    th, td {
+        padding: 10px;
+        border: 1px solid #ddd;
+    }
+
+    /* Header Row Styling */
+    thead tr {
+        background-color: #f2f2f2;
+        color: #333;
+    }
+
+    
+    tr:nth-child(even) {
+        background-color: rgba(240, 139, 8, 0.56);
+    }
+
+    
+    th:nth-child(even), td:nth-child(even) {
+        background-color: rgba(240, 139, 8, 0.56);
+    }
+
+    
+    a {
+        text-decoration: none;
+        font-weight: bold;
+    }
+
+    .delete-link {
+        color: red;
+        margin-right: 10px;
+    }
+
+    .edit-link {
+        color: blue;
+    }
+</style>
