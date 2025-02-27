@@ -33,6 +33,7 @@ def form_view(request):
 def delete_entry(request, entry_id):
     entry = get_object_or_404(Logger, id=entry_id)
     entry.delete()
+    log = "hi" 
     return redirect(f"{reverse('Form_Model')}?show_data=true")
 
 def update_entry(request, entry_id):
