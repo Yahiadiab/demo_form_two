@@ -15,13 +15,22 @@
 </form>
 </div>
 
-
+<!--
 <form method="get" style="margin-top: 10px;">
     <button type="submit" name="show_data" value="true">View Previous Data</button>
 </form>
+-->
 
-{% if saved_data %}
-    <h2> Saved data </h2>
+
+    <h2> Data Table</h2>
+    <form method="get" style="margin: 20px 0; text-align: center;">
+        <input type="text" name="search" placeholder="Search by First Name" value="{{ search_query }}">
+        <button type="submit">Search</button>
+    </form>
+
+
+
+
     <table>
         <thead>
             <tr>
@@ -29,11 +38,12 @@
                 <th>First Name</th>
                 <th>Last Name</th>
                 <th>Age</th>
+                <th>Actions</th>
             </tr>
         </thead>
 
         <tbody>
-            {% for item in saved_data %}
+            {% for item in page_obj %}
 
             <tr >
 
@@ -56,7 +66,24 @@
             
         
     </table>
-    <a href="/" style="font-weight: bold">Hide Data</a>
+    <div>
+        <span class="paginator_test">
+            {% if page_obj.has_previous %}
+            <a href="?page=1">&laquo; first</a>
+            <a href="?page={{ page_obj.previous_page_number}}">previous</a>
+            {% endif%}
+
+            <span class="current">
+                Page {{ page_obj.number}} of {{page_obj.paginator.num_pages}}. 
+            </span>
+
+            {% if page_obj.has_next %}
+                <a href="?page={{page_obj.next_page_number}}"> next </a>
+                <a href="?page={{page_obj.paginator.num_pages}}"> last &raquo; </a>
+
+        </span>
+    </div>
+
 
 {% endif %}
 <style>
@@ -102,4 +129,29 @@
     .edit-link {
         color: blue;
     }
+
+
+    .paginator_test {
+        text-align: center;
+        margin: 10px 0;
+    }
+    
+    .paginator_test a {
+        text-decoration: none;
+        color: blue;
+        margin: 0 5px;
+        font-weight: bold;
+    }
+    
+    .paginator_test a:hover {
+        text-decoration: underline;
+    }
+    
+    .paginator_test .current {
+        font-weight: bold;
+        color: black;
+        margin: 0 5px;
+    }
+    
+    
 </style>
